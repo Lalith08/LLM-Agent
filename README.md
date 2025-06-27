@@ -10,7 +10,11 @@ Step 1: Create & Activate Virtual Environment in CMD Prompt
 
 
 python -m venv venv
+
+
 venv\Scripts\activate   # Windows
+
+
 # source venv/bin/activate   # Mac/Linux
 
 Step 2 : Install Dependencies
