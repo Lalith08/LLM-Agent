@@ -84,22 +84,13 @@ streamlit run ui/ui_app.py
 - **Long-term Memory**: Persistent chat history stored in `SQLChatMessageHistory` (SQLite-based).
 
 
-
-
-## Security
-
-This project implements security measures to protect against code injection attacks:
-
-- **Calculator**: Uses AST parsing instead of `eval()` to prevent arbitrary code execution
-- **Code Executor**: Runs in a sandboxed environment with:
-  - Restricted built-in functions (no file I/O, network access, or system calls)
-  - Limited module access (only safe modules like `math`)
-  - Keyword filtering to block dangerous operations
-
- **Warning**: While sandboxed, the code executor should still be used with caution. Do not execute untrusted code.
-
  ## Notes
 
 - Conversation history is stored in `chat_memory.db`
 - The agent maintains context across multiple interactions
 - All tools include error handling and validation
+
+
+## 🤝 Contributing
+
+Feel free to submit issues or pull requests for improvements.
