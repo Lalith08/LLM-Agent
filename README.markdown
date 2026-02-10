@@ -1,7 +1,8 @@
 # LLM-Agent
-An LLM-based agent for performing various tasks using integrated tools and memory management.
+A conversational AI agent powered by LangChain and OpenAI that can perform various tasks including calculations, code execution, web searches, and PDF summarization.
 
-![LLM Agent](https://github.com/user-attachments/assets/aba1ea9e-8d45-4221-b968-b963e120cc46)
+<img width="2232" height="1163" alt="image" src="https://github.com/user-attachments/assets/ccb44678-bd84-412d-99b7-149efb8dfb0e" />
+
 
 ## Setup Instructions
 
@@ -71,12 +72,34 @@ streamlit run ui/ui_app.py
 
 ## Agent Features
 
-### Tools Integrated
-- **Calculator Tool**: Evaluates mathematical expressions.
-- **Code Executor Tool**: Executes basic Python code snippets.
-- **Web Search Tool**: Performs web searches using DuckDuckGo.
-- **Summarizer Tool**: Summarizes the contents of PDF files.
+- **Calculator Tool**: Safe mathematical expression evaluation with support for basic operations and functions
+- **Code Executor**: Sandboxed Python code execution environment
+- **Web Search**: DuckDuckGo-powered web search capability
+- **PDF Summarizer**: Extract and summarize content from PDF documents
+- **Conversational Memory**: Maintains conversation history using SQLite
+- **Web UI**: Streamlit-based user interface
 
 ### Memory
 - **Short-term Memory**: In-session context using `ConversationBufferMemory`.
 - **Long-term Memory**: Persistent chat history stored in `SQLChatMessageHistory` (SQLite-based).
+
+
+
+
+## Security
+
+This project implements security measures to protect against code injection attacks:
+
+- **Calculator**: Uses AST parsing instead of `eval()` to prevent arbitrary code execution
+- **Code Executor**: Runs in a sandboxed environment with:
+  - Restricted built-in functions (no file I/O, network access, or system calls)
+  - Limited module access (only safe modules like `math`)
+  - Keyword filtering to block dangerous operations
+
+ **Warning**: While sandboxed, the code executor should still be used with caution. Do not execute untrusted code.
+
+ ## Notes
+
+- Conversation history is stored in `chat_memory.db`
+- The agent maintains context across multiple interactions
+- All tools include error handling and validation
